@@ -38,9 +38,9 @@ tech-support-kw.firebaseapp.com
 
 # Kuwait Tech Support
 
-Marketing site for **Kuwait Tech Support** — technical support for clients, integrations, maintenance and bugfixes, and long-term technical partnership.
+Marketing site for **Kuwait Tech Support** — your technology partner for business growth.
 
-Tagline: *Manage your business professionally and grow with confidence.*
+Positioning: *Keep your systems reliable. Keep your business moving.* Dependable technical expertise for growing businesses: integrations, maintenance, troubleshooting, and bug fixes, as an extension of your team.
 
 The site is a static landing page (English with an Arabic toggle) served from the `public/` folder on Firebase Hosting.
 
@@ -52,7 +52,7 @@ Open `public/index.html` in a browser, or serve the Hosting folder:
 npx firebase serve --only hosting
 ```
 
-Contact email, phone, and WhatsApp numbers are placeholders in `public/js/main.js` (`CONTACT`). Update them before going live.
+Contact details are defined in `public/js/main.js` (`CONTACT`).
 
 ## Deploy
 

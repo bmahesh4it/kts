@@ -212,7 +212,14 @@ h3 {
 
 h1 {
   font-size: clamp(2rem, 4.4vw, 3.4rem);
-  max-width: 16ch;
+  max-width: 18ch;
+}
+
+.hero-sub {
+  margin: 0 0 16px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--gold-soft);
 }
 
 h2 {
@@ -408,7 +415,18 @@ h2 {
 
 .contact-meta {
   color: var(--muted);
-  font-size: 0.85rem;
+  font-size: 0.95rem;
+}
+
+.contact-meta a {
+  color: var(--navy);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.contact-meta a:hover,
+.contact-meta a:focus-visible {
+  text-decoration: underline;
 }
 
 .site-footer {

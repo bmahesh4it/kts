@@ -1,7 +1,7 @@
 const CONTACT = {
-  email: "hello@example.com",
-  phone: "+96500000000",
-  whatsapp: "96500000000",
+  email: "techsupportkw@gmail.com",
+  phone: "+96569989956",
+  whatsapp: "96569989956",
 };
 
 const translations = {
@@ -14,65 +14,67 @@ const translations = {
     navPartnership: "Partnership",
     navAbout: "About",
     navContact: "Contact",
-    heroEyebrow: "Technical partnership for growing businesses",
-    heroTitle: "Manage your business professionally and grow with confidence",
+    heroEyebrow: "Professional technical services",
+    heroTitle: "Your Technology Partner for Business Growth",
+    heroSub: "Keep your systems reliable. Keep your business moving.",
     heroLede:
-      "Kuwait Tech Support provides technical support to clients — integrations, maintenance and bugfixes — so your systems stay reliable while you focus on the business.",
-    ctaSupport: "Request support",
-    ctaServices: "View services",
-    panelLabel: "What we cover",
-    panel1: "Client technical support",
-    panel2: "Systems integrations",
-    panel3: "Maintenance & bugfixes",
-    panel4: "Ongoing partnership",
+      "Kuwait Tech Support provides dependable technical expertise for growing businesses. From system integrations and ongoing maintenance to troubleshooting and bug fixes, we work as an extension of your team—keeping your technology secure, reliable, and aligned with your business needs.",
+    ctaSupport: "Request a consultation",
+    ctaServices: "Explore our services",
+    panelLabel: "Areas of expertise",
+    panel1: "Technical support",
+    panel2: "System integration",
+    panel3: "Maintenance and bug fixes",
+    panel4: "Technical partnership",
     servicesEyebrow: "Services",
-    servicesTitle: "Support that keeps the business moving",
-    servicesIntro: "Practical technical help, delivered as a partnership — not a one-off ticket.",
-    svc1Title: "Technical support for clients",
+    servicesTitle: "Capabilities that protect operations",
+    servicesIntro:
+      "Structured technical services designed to keep your platforms reliable, secure, and ready to scale.",
+    svc1Title: "Technical support",
     svc1Body:
-      "A clear point of contact when software, websites, or internal tools need attention. We diagnose issues, communicate plainly, and close the loop.",
-    svc2Title: "Integrations",
+      "Dedicated assistance for applications, websites, and internal systems. Issues are diagnosed, resolved, and communicated with clarity from first report to resolution.",
+    svc2Title: "System integration",
     svc2Body:
-      "Connect the tools you already use — payments, CRMs, accounting, messaging, and custom APIs — so data flows without manual workarounds.",
-    svc3Title: "Maintenance and bugfixes",
+      "We connect the platforms your business depends on—including payments, CRM, accounting, messaging, and custom APIs—so information moves accurately across the organisation.",
+    svc3Title: "Maintenance and bug fixes",
     svc3Body:
-      "Keep production stable: patches, dependency updates, performance checks, and the small fixes that prevent expensive downtime.",
+      "Proactive maintenance, security updates, performance reviews, and timely defect resolution to protect uptime and reduce operational risk.",
     svc4Title: "Technical partnership",
     svc4Body:
-      "A retained relationship with someone who understands your stack and your priorities — available when you need to ship, recover, or plan the next step.",
-    partnershipEyebrow: "How we work",
-    partnershipTitle: "A partnership, not a ticket mill",
-    partnershipIntro: "We learn the business first, then keep systems stable and connected as you grow.",
-    step1Title: "Discover",
-    step1Body: "Map your products, vendors, and the issues that actually cost time.",
-    step2Title: "Stabilize",
-    step2Body: "Fix what is breaking, set a maintenance rhythm, and reduce firefighting.",
+      "Ongoing advisory and delivery support from a team that understands your environment, priorities, and growth plans.",
+    partnershipEyebrow: "Our approach",
+    partnershipTitle: "A structured technical partnership",
+    partnershipIntro:
+      "We begin with a clear understanding of your operations, then maintain and integrate systems so technology consistently supports growth.",
+    step1Title: "Assess",
+    step1Body:
+      "Review your platforms, vendors, and operational risks to identify where technical support will deliver the greatest value.",
+    step2Title: "Stabilise",
+    step2Body: "Resolve critical issues, establish a maintenance programme, and reduce unplanned disruption.",
     step3Title: "Integrate",
-    step3Body: "Connect systems so operations, sales, and finance stay in sync.",
-    step4Title: "Grow",
-    step4Body: "Ship improvements with a partner who already knows the codebase and the context.",
-    aboutEyebrow: "About",
-    aboutTitle: "Kuwait-based technical support you can rely on",
+    step3Body: "Align core systems so operations, sales, and finance work from consistent, reliable data.",
+    step4Title: "Scale",
+    step4Body: "Deliver improvements with a partner already familiar with your architecture and business context.",
+    aboutEyebrow: "About us",
+    aboutTitle: "An extension of your team",
     aboutP1:
-      "Kuwait Tech Support exists so businesses can operate professionally without building a full in-house engineering team on day one.",
-    aboutP2:
-      "We work as an extension of your company: available for client-facing issues, backend integrations, and the ongoing maintenance that keeps software trustworthy.",
-    quote: "Grow with confidence — because the technical side is covered.",
+      "Kuwait Tech Support provides dependable technical expertise for growing businesses. From system integrations and ongoing maintenance to troubleshooting and bug fixes, we work as an extension of your team—keeping your technology secure, reliable, and aligned with your business needs.",
+    quote: "Keep your systems reliable. Keep your business moving.",
     contactEyebrow: "Contact",
-    contactTitle: "Tell us what you need",
-    contactIntro: "Share a short brief and we will follow up. You can also reach us on WhatsApp or email.",
-    ctaWhatsapp: "Message on WhatsApp",
-    ctaEmail: "Send an email",
-    contactHint: "Replace placeholders in",
+    contactTitle: "Discuss your requirements",
+    contactIntro:
+      "Share a brief outline of your needs and our team will respond promptly. You may also reach us by WhatsApp or email.",
+    ctaWhatsapp: "Contact us on WhatsApp",
+    ctaEmail: "Email our team",
     labelName: "Name",
-    labelBusiness: "Business",
+    labelBusiness: "Company",
     labelEmail: "Email",
     labelPhone: "Phone",
-    labelNeed: "What do you need?",
+    labelNeed: "How can we assist?",
     formError: "Please complete the required fields.",
-    formOk: "Opening your email app with the request filled in.",
-    formSubmit: "Send request",
-    tagline: "Manage your business professionally and grow with confidence",
+    formOk: "Your email application will open with the enquiry details.",
+    formSubmit: "Submit enquiry",
+    tagline: "Your Technology Partner for Business Growth",
   },
   ar: {
     skip: "تخطٍ إلى المحتوى",
@@ -83,65 +85,64 @@ const translations = {
     navPartnership: "الشراكة",
     navAbout: "من نحن",
     navContact: "تواصل",
-    heroEyebrow: "شراكة تقنية للأعمال النامية",
-    heroTitle: "أدِر عملك باحتراف وانمُ بثقة",
+    heroEyebrow: "خدمات تقنية احترافية",
+    heroTitle: "شريكك التقني لنمو الأعمال",
+    heroSub: "حافظ على موثوقية أنظمتك. وحافظ على استمرارية عملك.",
     heroLede:
-      "نقدّم الدعم التقني للعملاء — التكامل والصيانة وإصلاح الأخطاء — لتبقى أنظمتك موثوقة بينما تركز على العمل.",
-    ctaSupport: "اطلب الدعم",
-    ctaServices: "اطّلع على الخدمات",
-    panelLabel: "ما نغطيه",
-    panel1: "دعم تقني للعملاء",
+      "نقدّم خبرة تقنية يمكن الاعتماد عليها للأعمال النامية. من تكامل الأنظمة والصيانة المستمرة إلى استكشاف الأخطاء وإصلاحها، نعمل كامتداد لفريقك—لنبقى تقنيتك آمنة وموثوقة ومتوافقة مع احتياجات عملك.",
+    ctaSupport: "اطلب استشارة",
+    ctaServices: "استكشف خدماتنا",
+    panelLabel: "مجالات الخبرة",
+    panel1: "الدعم التقني",
     panel2: "تكامل الأنظمة",
-    panel3: "صيانة وإصلاح أخطاء",
-    panel4: "شراكة مستمرة",
+    panel3: "الصيانة وإصلاح الأخطاء",
+    panel4: "الشراكة التقنية",
     servicesEyebrow: "الخدمات",
-    servicesTitle: "دعم يُبقي العمل في حركة",
-    servicesIntro: "مساعدة تقنية عملية، تُقدَّم كشراكة وليست تذكرة لمرة واحدة.",
-    svc1Title: "الدعم التقني للعملاء",
+    servicesTitle: "قدرات تحمي استمرارية التشغيل",
+    servicesIntro: "خدمات تقنية منظّمة تهدف إلى إبقاء منصاتك موثوقة وآمنة وجاهزة للتوسع.",
+    svc1Title: "الدعم التقني",
     svc1Body:
-      "جهة اتصال واضحة عندما تحتاج البرمجيات أو المواقع أو الأدوات الداخلية إلى اهتمام. نشخّص المشكلة ونتواصل بوضوح ونغلق الحلقة.",
-    svc2Title: "التكامل",
+      "مساعدة متخصصة للتطبيقات والمواقع والأنظمة الداخلية. نُشخّص المشكلات ونحلّها ونتواصل بوضوح من الإبلاغ حتى الإغلاق.",
+    svc2Title: "تكامل الأنظمة",
     svc2Body:
-      "نربط الأدوات التي تستخدمها بالفعل — المدفوعات وإدارة العملاء والمحاسبة والمراسلة وواجهات البرمجة — دون حلول يدوية.",
+      "نربط المنصات التي يعتمد عليها عملك—بما في ذلك المدفوعات وإدارة العملاء والمحاسبة والمراسلة وواجهات البرمجة—لتنتقل المعلومات بدقة عبر المؤسسة.",
     svc3Title: "الصيانة وإصلاح الأخطاء",
     svc3Body:
-      "نبقي الإنتاج مستقراً: تصحيحات، تحديثات، فحوصات أداء، والإصلاحات الصغيرة التي تمنع التوقف المكلف.",
+      "صيانة استباقية، وتحديثات أمنية، ومراجعات للأداء، ومعالجة للعيوب في الوقت المناسب لحماية وقت التشغيل وتقليل المخاطر التشغيلية.",
     svc4Title: "الشراكة التقنية",
     svc4Body:
-      "علاقة مستمرة مع من يفهم أنظمتك وأولوياتك — متاح عندما تحتاج إلى الإطلاق أو الاستعادة أو التخطيط للخطوة التالية.",
-    partnershipEyebrow: "كيف نعمل",
-    partnershipTitle: "شراكة، وليست طاحونة تذاكر",
-    partnershipIntro: "نتعلم العمل أولاً، ثم نبقي الأنظمة مستقرة ومتصلة مع نموك.",
-    step1Title: "اكتشاف",
-    step1Body: "نرسم منتجاتك ومورّديك والمشكلات التي تكلف الوقت فعلاً.",
+      "دعم استشاري وتنفيذي مستمر من فريق يفهم بيئتك وأولوياتك وخطط النمو.",
+    partnershipEyebrow: "منهجيتنا",
+    partnershipTitle: "شراكة تقنية منظّمة",
+    partnershipIntro:
+      "نبدأ بفهم واضح لعملياتك، ثم نصون الأنظمة ونربطها ليبقى التقنية داعماً ثابتاً للنمو.",
+    step1Title: "تقييم",
+    step1Body: "نراجع منصاتك ومورّديك والمخاطر التشغيلية لتحديد مواطن الدعم التقني الأعلى قيمة.",
     step2Title: "استقرار",
-    step2Body: "نصلح ما يتعطل، ونضع إيقاعاً للصيانة، ونقلل إطفاء الحرائق.",
+    step2Body: "نعالج المشكلات الحرجة، ونضع برنامج صيانة، ونقلل الانقطاع غير المخطط له.",
     step3Title: "تكامل",
-    step3Body: "نربط الأنظمة لتبقى العمليات والمبيعات والمالية متوافقة.",
-    step4Title: "نمو",
-    step4Body: "نُطلق التحسينات مع شريك يعرف الشفرة والسياق مسبقاً.",
+    step3Body: "نواءم الأنظمة الأساسية لتعمل العمليات والمبيعات والمالية على بيانات متسقة وموثوقة.",
+    step4Title: "توسع",
+    step4Body: "نقدّم التحسينات مع شريك ملم مسبقاً ببنيتك التقنية وسياق عملك.",
     aboutEyebrow: "من نحن",
-    aboutTitle: "دعم تقني من الكويت يمكن الاعتماد عليه",
+    aboutTitle: "امتداد لفريقك",
     aboutP1:
-      "وُجدت الكويت للدعم التقني حتى تدير الشركات أعمالها باحتراف دون بناء فريق هندسي كامل من اليوم الأول.",
-    aboutP2:
-      "نعمل كامتداد لشركتك: متاحون لمشكلات العملاء، وتكامل الأنظمة، والصيانة المستمرة التي تجعل البرمجيات جديرة بالثقة.",
-    quote: "انمُ بثقة — لأن الجانب التقني مغطى.",
+      "نقدّم خبرة تقنية يمكن الاعتماد عليها للأعمال النامية. من تكامل الأنظمة والصيانة المستمرة إلى استكشاف الأخطاء وإصلاحها، نعمل كامتداد لفريقك—لنبقى تقنيتك آمنة وموثوقة ومتوافقة مع احتياجات عملك.",
+    quote: "حافظ على موثوقية أنظمتك. وحافظ على استمرارية عملك.",
     contactEyebrow: "تواصل",
-    contactTitle: "أخبرنا بما تحتاجه",
-    contactIntro: "أرسل ملخصاً قصيراً وسنعود إليك. يمكنك أيضاً التواصل عبر واتساب أو البريد.",
-    ctaWhatsapp: "راسلنا على واتساب",
-    ctaEmail: "أرسل بريداً",
-    contactHint: "استبدل البيانات التجريبية في",
+    contactTitle: "ناقش متطلباتك",
+    contactIntro: "شارك موجزاً لاحتياجاتك وسنرد عليك بسرعة. يمكنك أيضاً التواصل عبر واتساب أو البريد الإلكتروني.",
+    ctaWhatsapp: "تواصل عبر واتساب",
+    ctaEmail: "راسل فريقنا",
     labelName: "الاسم",
     labelBusiness: "الشركة",
     labelEmail: "البريد الإلكتروني",
     labelPhone: "الهاتف",
-    labelNeed: "ماذا تحتاج؟",
+    labelNeed: "كيف يمكننا المساعدة؟",
     formError: "يرجى إكمال الحقول المطلوبة.",
-    formOk: "سيتم فتح تطبيق البريد مع الطلب جاهزاً.",
-    formSubmit: "إرسال الطلب",
-    tagline: "أدِر عملك باحتراف وانمُ بثقة",
+    formOk: "سيتم فتح تطبيق البريد مع تفاصيل الاستفسار.",
+    formSubmit: "إرسال الاستفسار",
+    tagline: "شريكك التقني لنمو الأعمال",
   },
 };
 
@@ -170,9 +171,22 @@ function applyLanguage(lang) {
 function setContactLinks() {
   const wa = document.querySelector("[data-whatsapp-link]");
   const mail = document.querySelector("[data-email-link]");
-  const text = encodeURIComponent("Hello Kuwait Tech Support, I would like to discuss technical support.");
+  const emailDisplay = document.querySelector("[data-email-display]");
+  const phoneDisplay = document.querySelector("[data-phone-display]");
+  const text = encodeURIComponent(
+    "Good day. I would like to discuss technical services with Kuwait Tech Support."
+  );
+  const subject = encodeURIComponent("Enquiry — Kuwait Tech Support");
   wa.href = `https://wa.me/${CONTACT.whatsapp}?text=${text}`;
-  mail.href = `mailto:${CONTACT.email}?subject=${encodeURIComponent("Support request — Kuwait Tech Support")}`;
+  mail.href = `mailto:${CONTACT.email}?subject=${subject}`;
+  if (emailDisplay) {
+    emailDisplay.href = `mailto:${CONTACT.email}`;
+    emailDisplay.textContent = CONTACT.email;
+  }
+  if (phoneDisplay) {
+    phoneDisplay.href = `tel:${CONTACT.phone}`;
+    phoneDisplay.textContent = CONTACT.phone;
+  }
 }
 
 toggle?.addEventListener("click", () => {
@@ -212,7 +226,7 @@ form?.addEventListener("submit", (event) => {
   ].join("\n");
 
   const mailto = `mailto:${CONTACT.email}?subject=${encodeURIComponent(
-    "Support request — Kuwait Tech Support"
+    "Enquiry — Kuwait Tech Support"
   )}&body=${encodeURIComponent(body)}`;
 
   formOk.hidden = false;
