@@ -401,6 +401,25 @@ h2 {
   border-color: transparent;
 }
 
+.contact-form input.invalid,
+.contact-form textarea.invalid {
+  border-color: #9b1c1c;
+}
+
+.field-error {
+  color: #9b1c1c;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .form-error {
   color: #9b1c1c;
   margin: 0;

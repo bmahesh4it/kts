@@ -148,40 +148,41 @@
           <div>
             <p class="eyebrow" data-i18n="contactEyebrow">Contact</p>
             <h2 data-i18n="contactTitle">Discuss your requirements</h2>
-            <p data-i18n="contactIntro">Share a brief outline of your needs and our team will respond promptly. You may also reach us by WhatsApp or email.</p>
+            <p data-i18n="contactIntro">Complete the enquiry form and our team will review your request. You may also email us directly.</p>
             <div class="contact-actions">
-              <a class="btn btn-primary" data-whatsapp-link href="#" target="_blank" rel="noopener noreferrer" data-i18n="ctaWhatsapp">Contact us on WhatsApp</a>
               <a class="btn btn-secondary" data-email-link href="mailto:" data-i18n="ctaEmail">Email our team</a>
             </div>
             <p class="contact-meta">
               <a data-email-display href="mailto:"></a>
-              <span aria-hidden="true"> · </span>
-              <a data-phone-display href="tel:"></a>
             </p>
           </div>
           <form class="contact-form" id="contact-form" novalidate>
+            <label class="honeypot" aria-hidden="true">
+              <span>Website</span>
+              <input type="text" name="website" tabindex="-1" autocomplete="off">
+            </label>
             <label>
               <span data-i18n="labelName">Name</span>
-              <input type="text" name="name" required autocomplete="name">
+              <input type="text" name="name" required autocomplete="name" minlength="2" maxlength="80">
+              <span class="field-error" data-error-for="name" hidden></span>
             </label>
             <label>
               <span data-i18n="labelBusiness">Company</span>
-              <input type="text" name="business" required autocomplete="organization">
+              <input type="text" name="business" required autocomplete="organization" minlength="2" maxlength="100">
+              <span class="field-error" data-error-for="business" hidden></span>
             </label>
-            <label>
+            <label class="full">
               <span data-i18n="labelEmail">Email</span>
-              <input type="email" name="email" required autocomplete="email">
-            </label>
-            <label>
-              <span data-i18n="labelPhone">Phone</span>
-              <input type="tel" name="phone" autocomplete="tel">
+              <input type="email" name="email" required autocomplete="email" maxlength="120">
+              <span class="field-error" data-error-for="email" hidden></span>
             </label>
             <label class="full">
               <span data-i18n="labelNeed">How can we assist?</span>
-              <textarea name="need" rows="5" required></textarea>
+              <textarea name="need" rows="5" required minlength="20" maxlength="2000"></textarea>
+              <span class="field-error" data-error-for="need" hidden></span>
             </label>
-            <p class="form-error" id="form-error" hidden data-i18n="formError">Please complete the required fields.</p>
-            <p class="form-ok" id="form-ok" hidden data-i18n="formOk">Your email application will open with the enquiry details.</p>
+            <p class="form-error" id="form-error" hidden></p>
+            <p class="form-ok" id="form-ok" hidden data-i18n="formOk">Thank you. Your enquiry has been received.</p>
             <button class="btn btn-primary full" type="submit" data-i18n="formSubmit">Submit enquiry</button>
           </form>
         </div>
@@ -202,6 +203,9 @@
       </div>
     </footer>
 
-    <script src="/js/main.js"></script>
+    <script defer src="/__/firebase/12.19.0/firebase-app-compat.js"></script>
+    <script defer src="/__/firebase/12.19.0/firebase-firestore-compat.js"></script>
+    <script defer src="/__/firebase/init.js"></script>
+    <script defer src="/js/main.js"></script>
   </body>
 </html>

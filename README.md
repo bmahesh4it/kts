@@ -42,17 +42,43 @@ Marketing site for **Kuwait Tech Support** — your technology partner for busin
 
 Positioning: *Keep your systems reliable. Keep your business moving.* Dependable technical expertise for growing businesses: integrations, maintenance, troubleshooting, and bug fixes, as an extension of your team.
 
-The site is a static landing page (English with an Arabic toggle) served from the `public/` folder on Firebase Hosting.
+The site is a static landing page (English with an Arabic toggle) served from the `public/` folder on Firebase Hosting. Enquiries are stored in Cloud Firestore. When a visitor submits the enquiry form, a Cloud Function also emails **techsupportkw@gmail.com**. Staff can sign in at `/admin.html` to review, update, and delete records.
+
+WhatsApp and phone contact options are hidden for now. The public email contact remains available.
 
 ## Local preview
 
-Open `public/index.html` in a browser, or serve the Hosting folder:
+Serve through Firebase Hosting so the Firebase SDK can load:
 
 ```bash
-npx firebase serve --only hosting
+npx firebase serve
 ```
 
-Contact details are defined in `public/js/main.js` (`CONTACT`).
+## Enquiries (Firestore)
+
+1. Enable **Cloud Firestore** in the Firebase console for `tech-support-kw` if it is not already created.
+2. Enable **Email/Password** authentication and create one staff user (do not add a public sign-up form).
+3. Deploy rules with the site:
+
+```bash
+firebase deploy --only hosting,firestore
+```
+
+I've set up prototype Security Rules to keep enquiry data in Firestore safe. Visitors may only **create** a new enquiry with validated fields. Only signed-in staff can **read, update, or delete** records. You should review and verify these rules before sharing the app widely.
+
+## Email notifications
+
+The form still saves the enquiry. A function then sends a notification to `techsupportkw@gmail.com`.
+
+This requires the Blaze plan. Use a Gmail **App Password** for `techsupportkw@gmail.com` (Google Account → Security → 2-Step Verification → App passwords).
+
+```bash
+firebase functions:secrets:set SMTP_USER
+firebase functions:secrets:set SMTP_PASS
+firebase deploy --only functions
+```
+
+Set `SMTP_USER` to `techsupportkw@gmail.com` and `SMTP_PASS` to the app password.
 
 ## Deploy
 
@@ -61,7 +87,7 @@ Firebase project: `tech-support-kw`
 ```bash
 npm install -g firebase-tools
 firebase login
-firebase deploy --only hosting
+firebase deploy --only hosting,firestore,functions
 ```
 
 Live URLs after deploy:

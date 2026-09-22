@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Staff — Kuwait Tech Support</title>
+    <link rel="icon" href="/img/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/admin.css">
+  </head>
+  <body class="admin-body">
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="/">
+          <img src="/img/logo.svg" alt="" width="40" height="40">
+          <span>
+            <strong>Kuwait Tech Support</strong>
+            <small>Staff</small>
+          </span>
+        </a>
+        <button class="btn btn-secondary" id="sign-out" type="button" hidden>Sign out</button>
+      </div>
+    </header>
+
+    <main class="container admin-main">
+      <section id="login-panel" class="admin-card">
+        <h1>Staff sign in</h1>
+        <p>Sign in to manage enquiry records.</p>
+        <form id="login-form">
+          <label>
+            Email
+            <input type="email" name="email" required autocomplete="username">
+          </label>
+          <label>
+            Password
+            <input type="password" name="password" required autocomplete="current-password">
+          </label>
+          <p class="form-error" id="login-error" hidden></p>
+          <button class="btn btn-primary" type="submit">Sign in</button>
+        </form>
+      </section>
+
+      <section id="dashboard" hidden>
+        <div class="admin-toolbar">
+          <h1>Enquiries</h1>
+          <div class="admin-toolbar-actions">
+            <input type="search" id="search-input" placeholder="Search name, company, or email">
+            <select id="status-filter">
+              <option value="all">All statuses</option>
+              <option value="new">New</option>
+              <option value="in_progress">In progress</option>
+              <option value="closed">Closed</option>
+            </select>
+            <button class="btn btn-primary" id="create-btn" type="button">New enquiry</button>
+          </div>
+        </div>
+        <p id="list-empty" class="muted" hidden>No enquiries match this filter.</p>
+        <p class="form-error" id="table-error" hidden></p>
+        <div class="table-wrap">
+          <table class="enquiry-table">
+            <thead>
+              <tr>
+                <th>Received</th>
+                <th>Name</th>
+                <th>Company</th>
+                <th>Email</th>
+                <th>Message</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="enquiry-list"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <dialog id="enquiry-dialog" class="enquiry-dialog">
+      <form id="enquiry-form">
+        <h2 id="dialog-title">Enquiry</h2>
+        <input type="hidden" name="id">
+        <label>
+          Name
+          <input type="text" name="name" required minlength="2" maxlength="80">
+        </label>
+        <label>
+          Company
+          <input type="text" name="company" required minlength="2" maxlength="100">
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" required maxlength="120">
+        </label>
+        <label>
+          Status
+          <select name="status">
+            <option value="new">New</option>
+            <option value="in_progress">In progress</option>
+            <option value="closed">Closed</option>
+          </select>
+        </label>
+        <label>
+          Language
+          <select name="language">
+            <option value="en">English</option>
+            <option value="ar">Arabic</option>
+          </select>
+        </label>
+        <label class="full">
+          Message
+          <textarea name="message" rows="5" required minlength="20" maxlength="2000"></textarea>
+        </label>
+        <label class="full">
+          Internal notes
+          <textarea name="notes" rows="3" maxlength="2000"></textarea>
+        </label>
+        <p class="form-error" id="dialog-error" hidden></p>
+        <div class="enquiry-actions">
+          <button class="btn btn-primary" type="submit">Save</button>
+          <button class="btn btn-secondary" id="dialog-cancel" type="button">Cancel</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script defer src="/__/firebase/12.19.0/firebase-app-compat.js"></script>
+    <script defer src="/__/firebase/12.19.0/firebase-auth-compat.js"></script>
+    <script defer src="/__/firebase/12.19.0/firebase-firestore-compat.js"></script>
+    <script defer src="/__/firebase/init.js"></script>
+    <script defer src="/js/admin.js"></script>
+  </body>
+</html>

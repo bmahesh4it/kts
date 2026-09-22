@@ -1,0 +1,93 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    //
+    // Collection: enquiries
+    // Document ID: auto-generated
+    // Fields:
+    //   - name: string (required, 2–80 chars)
+    //   - company: string (required, 2–100 chars)
+    //   - email: string (required, email format)
+    //   - message: string (required, 20–2000 chars)
+    //   - language: string (required, 'en' | 'ar')
+    //   - status: string (required, 'new' | 'in_progress' | 'closed')
+    //   - notes: string (optional, 0–2000 chars, staff only)
+    //   - createdAt: timestamp (required, immutable, recent on create)
+    //   - updatedAt: timestamp (required)
+    //
+    // Public visitors may create documents with status 'new' only.
+    // Authenticated staff may create, read, update, and delete records.
+    // Staff updates may change enquiry fields except createdAt.
+    // ===============================================================
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function hasOnlyAllowedFields(fields) {
+      return request.resource.data.keys().hasOnly(fields);
+    }
+
+    function hasRequiredFields(fields) {
+      return request.resource.data.keys().hasAll(fields);
+    }
+
+    function isValidEmail(email) {
+      return email is string &&
+        email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+    }
+
+    function isRecent(time) {
+      return time is timestamp &&
+        time > request.time - duration.value(5, 'm') &&
+        time <= request.time;
+    }
+
+    function areImmutableFieldsUnchanged(fields) {
+      return !request.resource.data.diff(resource.data).affectedKeys().hasAny(fields);
+    }
+
+    function isValidEnquiryFields(data) {
+      return data.name is string && data.name.size() >= 2 && data.name.size() <= 80 &&
+        data.company is string && data.company.size() >= 2 && data.company.size() <= 100 &&
+        isValidEmail(data.email) &&
+        data.message is string && data.message.size() >= 20 && data.message.size() <= 2000 &&
+        data.language in ['en', 'ar'] &&
+        data.status in ['new', 'in_progress', 'closed'] &&
+        data.createdAt is timestamp &&
+        data.updatedAt is timestamp;
+    }
+
+    function isValidEnquiryCreate() {
+      return hasRequiredFields(['name', 'company', 'email', 'message', 'language', 'status', 'createdAt', 'updatedAt']) &&
+        hasOnlyAllowedFields(['name', 'company', 'email', 'message', 'language', 'status', 'createdAt', 'updatedAt']) &&
+        isValidEnquiryFields(request.resource.data) &&
+        request.resource.data.status == 'new' &&
+        request.resource.data.updatedAt == request.resource.data.createdAt &&
+        isRecent(request.resource.data.createdAt);
+    }
+
+    function isValidEnquiryStaffWrite() {
+      return hasRequiredFields(['name', 'company', 'email', 'message', 'language', 'status', 'createdAt', 'updatedAt']) &&
+        hasOnlyAllowedFields(['name', 'company', 'email', 'message', 'language', 'status', 'createdAt', 'updatedAt', 'notes']) &&
+        isValidEnquiryFields(request.resource.data) &&
+        (!( 'notes' in request.resource.data) ||
+          (request.resource.data.notes is string && request.resource.data.notes.size() <= 2000));
+    }
+
+    function isValidEnquiryUpdate() {
+      return isValidEnquiryStaffWrite() &&
+        areImmutableFieldsUnchanged(['createdAt']);
+    }
+
+    match /enquiries/{enquiryId} {
+      allow create: if isValidEnquiryCreate() || (isAuthenticated() && isValidEnquiryStaffWrite() && isRecent(request.resource.data.createdAt));
+      allow read, delete: if isAuthenticated();
+      allow update: if isAuthenticated() && isValidEnquiryUpdate();
+    }
+  }
+}

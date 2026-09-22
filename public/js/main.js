@@ -1,9 +1,3 @@
-const CONTACT = {
-  email: "techsupportkw@gmail.com",
-  phone: "+96569989956",
-  whatsapp: "96569989956",
-};
-
 const translations = {
   en: {
     skip: "Skip to content",
@@ -63,17 +57,21 @@ const translations = {
     contactEyebrow: "Contact",
     contactTitle: "Discuss your requirements",
     contactIntro:
-      "Share a brief outline of your needs and our team will respond promptly. You may also reach us by WhatsApp or email.",
-    ctaWhatsapp: "Contact us on WhatsApp",
+      "Complete the enquiry form and our team will review your request. You may also email us directly.",
     ctaEmail: "Email our team",
     labelName: "Name",
     labelBusiness: "Company",
     labelEmail: "Email",
-    labelPhone: "Phone",
     labelNeed: "How can we assist?",
-    formError: "Please complete the required fields.",
-    formOk: "Your email application will open with the enquiry details.",
+    errName: "Enter your name (2–80 characters).",
+    errCompany: "Enter your company name (2–100 characters).",
+    errEmail: "Enter a valid email address.",
+    errNeed: "Describe how we can assist (at least 20 characters).",
+    formError: "Please correct the highlighted fields.",
+    formFail: "The enquiry could not be sent. Please try again shortly.",
+    formOk: "Thank you. Your enquiry has been received.",
     formSubmit: "Submit enquiry",
+    formSending: "Submitting…",
     tagline: "Your Technology Partner for Business Growth",
   },
   ar: {
@@ -131,19 +129,27 @@ const translations = {
     quote: "حافظ على موثوقية أنظمتك. وحافظ على استمرارية عملك.",
     contactEyebrow: "تواصل",
     contactTitle: "ناقش متطلباتك",
-    contactIntro: "شارك موجزاً لاحتياجاتك وسنرد عليك بسرعة. يمكنك أيضاً التواصل عبر واتساب أو البريد الإلكتروني.",
-    ctaWhatsapp: "تواصل عبر واتساب",
+    contactIntro: "أكمل نموذج الاستفسار وسيراجع فريقنا طلبك. يمكنك أيضاً مراسلتنا عبر البريد الإلكتروني.",
     ctaEmail: "راسل فريقنا",
     labelName: "الاسم",
     labelBusiness: "الشركة",
     labelEmail: "البريد الإلكتروني",
-    labelPhone: "الهاتف",
     labelNeed: "كيف يمكننا المساعدة؟",
-    formError: "يرجى إكمال الحقول المطلوبة.",
-    formOk: "سيتم فتح تطبيق البريد مع تفاصيل الاستفسار.",
+    errName: "أدخل اسمك (من حرفين إلى 80 حرفاً).",
+    errCompany: "أدخل اسم الشركة (من حرفين إلى 100 حرف).",
+    errEmail: "أدخل بريداً إلكترونياً صالحاً.",
+    errNeed: "صف كيف يمكننا المساعدة (20 حرفاً على الأقل).",
+    formError: "يرجى تصحيح الحقول المحددة.",
+    formFail: "تعذر إرسال الاستفسار. يرجى المحاولة لاحقاً.",
+    formOk: "شكراً لك. تم استلام استفسارك.",
     formSubmit: "إرسال الاستفسار",
+    formSending: "جاري الإرسال…",
     tagline: "شريكك التقني لنمو الأعمال",
   },
+};
+
+const CONTACT = {
+  email: "techsupportkw@gmail.com",
 };
 
 const html = document.documentElement;
@@ -153,40 +159,70 @@ const langToggle = document.querySelector("[data-lang-toggle]");
 const form = document.getElementById("contact-form");
 const formError = document.getElementById("form-error");
 const formOk = document.getElementById("form-ok");
+const submitBtn = form?.querySelector('[type="submit"]');
+const EMAIL_PATTERN = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+function dict() {
+  return translations[html.lang === "ar" ? "ar" : "en"];
+}
 
 function applyLanguage(lang) {
-  const dict = translations[lang];
+  const copy = translations[lang];
   html.lang = lang;
   html.dir = lang === "ar" ? "rtl" : "ltr";
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = el.getAttribute("data-i18n");
-    if (dict[key]) el.textContent = dict[key];
+    if (copy[key]) el.textContent = copy[key];
   });
-  const menuLabel = dict.menu;
+  const menuLabel = copy.menu;
   if (toggle) toggle.setAttribute("aria-label", menuLabel);
   langToggle.textContent = lang === "ar" ? "EN" : "AR";
   localStorage.setItem("kts-lang", lang);
 }
 
 function setContactLinks() {
-  const wa = document.querySelector("[data-whatsapp-link]");
   const mail = document.querySelector("[data-email-link]");
   const emailDisplay = document.querySelector("[data-email-display]");
-  const phoneDisplay = document.querySelector("[data-phone-display]");
-  const text = encodeURIComponent(
-    "Good day. I would like to discuss technical services with Kuwait Tech Support."
-  );
   const subject = encodeURIComponent("Enquiry — Kuwait Tech Support");
-  wa.href = `https://wa.me/${CONTACT.whatsapp}?text=${text}`;
-  mail.href = `mailto:${CONTACT.email}?subject=${subject}`;
+  if (mail) mail.href = `mailto:${CONTACT.email}?subject=${subject}`;
   if (emailDisplay) {
     emailDisplay.href = `mailto:${CONTACT.email}`;
     emailDisplay.textContent = CONTACT.email;
   }
-  if (phoneDisplay) {
-    phoneDisplay.href = `tel:${CONTACT.phone}`;
-    phoneDisplay.textContent = CONTACT.phone;
+}
+
+function clearFieldErrors() {
+  form?.querySelectorAll(".field-error").forEach((el) => {
+    el.hidden = true;
+    el.textContent = "";
+  });
+  form?.querySelectorAll(".invalid").forEach((el) => el.classList.remove("invalid"));
+}
+
+function showFieldError(field, message) {
+  const input = form.elements[field];
+  const errorEl = form.querySelector(`[data-error-for="${field}"]`);
+  input?.classList.add("invalid");
+  if (errorEl) {
+    errorEl.hidden = false;
+    errorEl.textContent = message;
   }
+}
+
+function validateEnquiry() {
+  const copy = dict();
+  const name = String(form.elements.name.value || "").trim();
+  const company = String(form.elements.business.value || "").trim();
+  const email = String(form.elements.email.value || "").trim();
+  const message = String(form.elements.need.value || "").trim();
+  const errors = {};
+
+  if (name.length < 2 || name.length > 80) errors.name = copy.errName;
+  if (company.length < 2 || company.length > 100) errors.business = copy.errCompany;
+  if (!EMAIL_PATTERN.test(email) || email.length > 120) errors.email = copy.errEmail;
+  if (message.length < 20 || message.length > 2000) errors.need = copy.errNeed;
+
+  return { name, company, email, message, errors, valid: Object.keys(errors).length === 0 };
 }
 
 toggle?.addEventListener("click", () => {
@@ -205,32 +241,63 @@ langToggle?.addEventListener("click", () => {
   applyLanguage(html.lang === "ar" ? "en" : "ar");
 });
 
-form?.addEventListener("submit", (event) => {
+form?.addEventListener("input", (event) => {
+  const field = event.target?.name;
+  if (!field) return;
+  event.target.classList.remove("invalid");
+  const errorEl = form.querySelector(`[data-error-for="${field}"]`);
+  if (errorEl) {
+    errorEl.hidden = true;
+    errorEl.textContent = "";
+  }
+});
+
+form?.addEventListener("submit", async (event) => {
   event.preventDefault();
+  const copy = dict();
   formError.hidden = true;
   formOk.hidden = true;
+  clearFieldErrors();
 
-  if (!form.checkValidity()) {
+  if (String(form.elements.website?.value || "").trim()) {
+    formOk.hidden = false;
+    form.reset();
+    return;
+  }
+
+  const result = validateEnquiry();
+  if (!result.valid) {
+    Object.entries(result.errors).forEach(([field, message]) => showFieldError(field, message));
+    formError.textContent = copy.formError;
     formError.hidden = false;
     return;
   }
 
-  const data = new FormData(form);
-  const body = [
-    `Name: ${data.get("name")}`,
-    `Business: ${data.get("business")}`,
-    `Email: ${data.get("email")}`,
-    `Phone: ${data.get("phone") || "—"}`,
-    "",
-    String(data.get("need")),
-  ].join("\n");
+  submitBtn.disabled = true;
+  submitBtn.textContent = copy.formSending;
 
-  const mailto = `mailto:${CONTACT.email}?subject=${encodeURIComponent(
-    "Enquiry — Kuwait Tech Support"
-  )}&body=${encodeURIComponent(body)}`;
-
-  formOk.hidden = false;
-  window.location.href = mailto;
+  try {
+    const now = firebase.firestore.Timestamp.now();
+    await firebase.firestore().collection("enquiries").add({
+      name: result.name,
+      company: result.company,
+      email: result.email,
+      message: result.message,
+      language: html.lang === "ar" ? "ar" : "en",
+      status: "new",
+      createdAt: now,
+      updatedAt: now,
+    });
+    form.reset();
+    formOk.hidden = false;
+  } catch (error) {
+    console.error(error);
+    formError.textContent = copy.formFail;
+    formError.hidden = false;
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = copy.formSubmit;
+  }
 });
 
 applyLanguage(localStorage.getItem("kts-lang") === "ar" ? "ar" : "en");
